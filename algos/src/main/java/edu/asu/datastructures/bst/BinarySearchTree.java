@@ -137,4 +137,26 @@ public class BinarySearchTree {
 			array.remove(array.size() - 1);
 		}
 	}
+
+	public Integer sumOfAllNodes() {
+		sum =0;
+		sum(this.head);
+		return sum;
+	}
+
+	int sum = 0;
+
+	private void sum(BinarySearchNode curNode) {
+		if (curNode != null) {
+			sum = sum + curNode.getValue();
+			sum(curNode.getLeft());
+			sum(curNode.getRight());
+
+		}
+
+	}
+	
+	public void inOrder(){
+		
+	}
 }

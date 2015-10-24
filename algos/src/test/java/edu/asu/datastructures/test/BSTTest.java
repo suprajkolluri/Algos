@@ -22,6 +22,8 @@ public class BSTTest {
 		System.out.println(tree.minimum());
 		System.out.println(tree.getHeight());
 		System.out.println(tree.getHeightRecursive());
-		tree.printPathToLeaves();
+		System.out.println(tree.sumOfAllNodes());
+		//tree.printPathToLeaves();
+		
 	}
 }
