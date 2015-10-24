@@ -15,6 +15,20 @@ public class SinglyLinkedList<T> {
 		}
 	}
 
+	public void insertLast(T value) {
+		SinglyLinkedNode<T> node = new SinglyLinkedNode<T>();
+		node.setValue(value);
+		if (head == null) {
+			head = node;
+		} else {
+			SinglyLinkedNode<T> curNode = this.head;
+			while (curNode.getNext() != null) {
+				curNode = curNode.getNext();
+			}
+			curNode.setNext(node);
+		}
+	}
+
 	public T removeLast() {
 		T value = null;
 		SinglyLinkedNode<T> curNode = this.head;
@@ -33,6 +47,51 @@ public class SinglyLinkedList<T> {
 		}
 
 		return value;
+	}
+
+	public T removeFirst() {
+		T value = null;
+		SinglyLinkedNode<T> curNode = this.head;
+		if (curNode != null) {
+			this.head = curNode.getNext();
+			value = curNode.getValue();
+		}
+		return value;
+	}
+
+	public T nthFromLast(int n) {
+		T value = null;
+		int length = length();
+		if (n < length) {
+			SinglyLinkedNode<T> curNode = this.head;
+			int k = 1;
+			while (curNode != null) {
+				if (k == length - n) {
+					value = curNode.getValue();
+					break;
+				}
+				curNode = curNode.getNext();
+				k++;
+			}
+		}
+
+		return value;
+	}
+
+	public int length() {
+		int length = 1;
+		if (this.head == null) {
+			length = 0;
+		} else {
+			SinglyLinkedNode<T> curNode = this.head;
+			while (curNode.getNext() != null) {
+				curNode = curNode.getNext();
+				length++;
+			}
+		}
+
+		return length;
+
 	}
 
 	@Override

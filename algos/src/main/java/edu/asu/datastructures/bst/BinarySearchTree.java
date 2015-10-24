@@ -1,5 +1,8 @@
 package edu.asu.datastructures.bst;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.asu.datastructures.Queue;
 
 public class BinarySearchTree {
@@ -32,6 +35,24 @@ public class BinarySearchTree {
 	}
 
 	public void delete(Integer value) {
+		// TODO
+	}
+
+	public Integer getHeightRecursive() {
+		return heightRecursive(head);
+	}
+
+	private Integer heightRecursive(BinarySearchNode curNode) {
+
+		if (curNode == null) {
+			return -1;
+		}
+
+		int left = heightRecursive(curNode.getLeft());
+
+		int right = heightRecursive(curNode.getRight());
+
+		return Math.max(left, right) + 1;
 
 	}
 
@@ -88,5 +109,32 @@ public class BinarySearchTree {
 
 		return curNode.getValue();
 
+	}
+
+	public void printPathToLeaves() {
+		List<Integer> array = new ArrayList<Integer>();
+		if (this.head == null) {
+			System.out.println("Tree is empty");
+		} else {
+			pathToLeaves(this.head, array);
+		}
+	}
+
+	private void pathToLeaves(BinarySearchNode curNode, List<Integer> array) {
+		if (curNode.getLeft() == null && curNode.getRight() == null) {
+			array.add(curNode.getValue());
+			System.out.println(array);
+			array.remove(array.size() - 1);
+		} else {
+			array.add(curNode.getValue());
+			if (curNode.getLeft() != null) {
+				pathToLeaves(curNode.getLeft(), array);
+			}
+
+			if (curNode.getRight() != null) {
+				pathToLeaves(curNode.getRight(), array);
+			}
+			array.remove(array.size() - 1);
+		}
 	}
 }
